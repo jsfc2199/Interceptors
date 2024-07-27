@@ -29,18 +29,18 @@ export class UsuariosService {
     })
     .pipe(
       map((resp:any) => resp.data),
-      catchError((error) => this.manejarError(error))
+      // catchError((error) => this.manejarError(error))
     )
 
     //!lo anterior funciona con normalidad, pero ¿qué pasa si a absolutamente todas las rutas queremos enviarle los headers como un token?
   }
 
-  manejarError(error : HttpErrorResponse){
-    console.log('sucedió un error');
-    console.log('Registrado en el log File')
-    console.warn(error)
-    return throwError(() => 'Error personalizado')
+  // manejarError(error : HttpErrorResponse){
+  //   console.log('sucedió un error');
+  //   console.log('Registrado en el log File')
+  //   console.warn(error)
+  //   return throwError(() => 'Error personalizado')
 
-  }
+  // }
 }
 

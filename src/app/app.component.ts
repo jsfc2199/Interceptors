@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UsuariosService } from './services/usuarios.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'interceptors';
+
+  private usuarioService = inject(UsuariosService)
+
+  constructor(){
+    this.usuarioService.getUsuarios()
+    .subscribe(resp => {
+      console.log(resp)
+    })
+  }
 }

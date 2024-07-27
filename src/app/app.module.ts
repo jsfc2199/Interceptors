@@ -17,6 +17,8 @@ import { userInt, userInterceptor } from './interceptors/interceptorA18.intercep
     // HttpClientModule
   ],
   providers: [
+    //!Nota: sise quiere usar el withInterceptorsFromDi se usa como se hizo al principio con el objeto de provide HTTP_INTERCEPTORS y use Class
+    //! Para más información https://angular.dev/guide/http/interceptors
     // provideHttpClient(withInterceptorsFromDi()),
     provideHttpClient(withInterceptors([/*userInterceptor*/ userInt])),
 

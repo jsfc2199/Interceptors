@@ -12,8 +12,9 @@ export class AppComponent {
 
   constructor(){
     this.usuarioService.getUsuarios()
-    .subscribe(resp => {
-      console.log(resp)
+    .subscribe({
+      next: (resp) => console.log(resp),
+      error: (err) => console.log('error en app component')
     })
   }
 }

@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,20 @@ export class UsuariosService {
       params,
       headers
     })
+    .pipe(
+      map((resp:any) => resp.data),
+      catchError((error) => this.manejarError(error))
+    )
 
     //!lo anterior funciona con normalidad, pero ¿qué pasa si a absolutamente todas las rutas queremos enviarle los headers como un token?
+  }
+
+  manejarError(error : HttpErrorResponse){
+    console.log('sucedió un error');
+    console.log('Registrado en el log File')
+    console.warn(error)
+    return throwError(() => 'Error personalizado')
+
   }
 }
 

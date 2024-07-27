@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { InterceptorService } from './interceptors/interceptor.service';
+import { userInt, userInterceptor } from './interceptors/interceptorA18.interceptor';
 
 @NgModule({
   declarations: [
@@ -13,15 +14,17 @@ import { InterceptorService } from './interceptors/interceptor.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    // HttpClientModule
   ],
   providers: [
-    // provideHttpClient(withInterceptorsFromDi())
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
-    }
+    // provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptors([/*userInterceptor*/ userInt])),
+
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: InterceptorService,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

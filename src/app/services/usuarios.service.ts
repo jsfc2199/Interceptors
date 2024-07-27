@@ -18,13 +18,14 @@ export class UsuariosService {
     const params = new HttpParams().append('page', '2')
 
     //otro ejemplo es enviar headers que normalmente los enviamos también en el cuerpo del get
-    const headers = new HttpHeaders({
-      'token-usuario': 'faiwueqtioiwerqb'
-    })
+    //! haremos que el interceptor se encargue de colocar el token
+    // const headers = new HttpHeaders({
+    //   'token-usuario': 'faiwueqtioiwerqb'
+    // })
 
     return this.http.get('https://reqres.in/api/users', {
       params,
-      headers
+      // headers
     })
     .pipe(
       map((resp:any) => resp.data),
